@@ -1,0 +1,44 @@
+﻿@using GasStation.ViewModel
+
+@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<script src="~/js/Home.js"></script>
+
+<h1>Gas Station Dashboard</h1>
+
+<ul>
+    <li>1. Unlock a pump</li>
+    <li>2. Selecting a predefined amount</li>
+    <ul>
+        <li>2.1 Stablish a predefined amount</li>
+        <li>2.2 Press set button</li>
+        <li>2.2 Spend all the gas pressing spend button</li>
+    </ul>
+    <li>3. Pressing spend button without limit (Press spend button more than 1 second and wait to desired amount)</li>
+</ul>
+
+@foreach (var pump in Model.Pumps)
+{
+    <div class="pump">
+        <div id="Status_@pump.Id" class="circle @(pump.IsLocked ? "red" : "green")"></div>
+        <h2>Pump @pump.Number</h2>
+
+        <button id="unlock-Button_@pump.Id" class="unlock-Button" onclick="unlockPump('@pump.Id')" @(pump.IsLocked ? "" : "disabled style=display:none")>Unlock</button>
+        <button id="lock-Button_@pump.Id" class="lock-Button" onclick="lockPump('@pump.Id')" @(pump.IsLocked ? "disabled  style=display:none" : "")>Lock</button>
+
+        <div>
+            <p id="Price_@pump.Id" class="price">Price: @pump.CurrentPrice</p>
+            <button id="spend-Button_@pump.Id" class="spend-button" onclick="spendPump('@pump.Id')" @(pump.IsLocked ? "disabled" : "")>Spend</button>
+        </div>
+
+        <label for="predefinedAmount">Predefined Amount:</label>
+        <input type="number" id="predefinedAmount_@pump.Id" name="predefinedAmount" />
+        <button id="setPrice-Button_@pump.Id" onclick="setPredefinedPrice('@pump.Id')" @(pump.IsLocked ? "disabled" : "")>Set</button>
+    </div>
+}
+
+

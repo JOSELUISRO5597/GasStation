@@ -1,0 +1,34 @@
+﻿
+@using GasStation.ViewModel
+
+@model RankingViewModel
+
+<h1>Gas Station Ranking</h1>
+
+@if (!Model.PumpHistory.Any())
+{
+    <p>There are no used pumps available to display in this ranking.</p>
+}else{
+<table class="table">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Total Amount</th>
+            <th>Last Date</th>
+            <th>Last Hour</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PumpHistory)
+        {
+            <tr>
+                <td>@item.PumpNumber</td>
+                <td>@item.Amount</td>
+                <td>@item.DateTime.ToShortDateString()</td>
+                <td>@item.DateTime.ToShortTimeString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+}
