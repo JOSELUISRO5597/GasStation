@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces;
 using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +18,16 @@ namespace Application.Pump.Query
 
         public async Task<IEnumerable<Domain.Entities.Pump>> Handle(GetAllPumpsQuery request, CancellationToken cancellationToken)
         {
-            var pumps = _pumpRepository.GetAll();
+            IEnumerable<Domain.Entities.Pump> pumps;
+            
+            try
+            {
+                pumps = _pumpRepository.GetAll();
+            }
+            catch (Exception ex)
+            {
+                pumps = new List<Domain.Entities.Pump>();
+            }
 
             return pumps;
         }
