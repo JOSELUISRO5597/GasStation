@@ -5,15 +5,13 @@ using Xunit;
 
 namespace UnitTest.Application.Pumps.Query.GetAllPumps
 {
-    public class WhenGetAllPumpsQueryReturnsException : TestForGetAllPumpsQuery
+    public class WhenGetAllPumpsQueryThrowsException : TestForGetAllPumpsQuery
     {
         private Exception _exception => new Exception("Error message");
 
         [Fact]
         public async Task TestForGetAllPumpsQueryReturnsExpception()
         {
-            ConfigureTest();
-
             var result = await QueryHandler.Handle(Query, CancellationToken.None);
 
             Assert.NotNull(result);

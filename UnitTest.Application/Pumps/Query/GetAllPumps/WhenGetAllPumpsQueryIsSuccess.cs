@@ -10,8 +10,6 @@ namespace UnitTest.Application.Pumps.Query.GetAllPumps
         [Fact]
         public async Task TestForGetAllPumpsQueryIsSucess()
         {
-            ConfigureTest();
-
             var result = await QueryHandler.Handle(Query, CancellationToken.None);
 
             Assert.NotNull(result);

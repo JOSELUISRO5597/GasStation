@@ -14,13 +14,15 @@ namespace UnitTest.Application.Pumps.Query.GetAllPumps
         protected GetAllPumpsQuery Query;
         protected GetAllPumpsQueryHandler QueryHandler;
 
-        protected void ConfigureTest()
+        public TestForGetAllPumpsQuery()
         {
             PumpRepositoryMock = new Mock<IPumpRepository>();
             Pumps = GetAllMockedPumps();
 
             MoqRepositoryServices();
-            GetCommandObjects();
+
+            Query = new GetAllPumpsQuery();
+            QueryHandler = new GetAllPumpsQueryHandler(PumpRepositoryMock.Object);
         }
 
         protected virtual List<Pump> GetAllMockedPumps()
@@ -37,12 +39,6 @@ namespace UnitTest.Application.Pumps.Query.GetAllPumps
         protected virtual void MoqRepositoryServices()
         {
             PumpRepositoryMock.Setup(repo => repo.GetAll()).Returns(Pumps);
-        }
-
-        private void GetCommandObjects()
-        {
-            Query = new GetAllPumpsQuery();
-            QueryHandler = new GetAllPumpsQueryHandler(PumpRepositoryMock.Object);
         }
     }
 }
