@@ -4,8 +4,6 @@ using Domain.Interfaces;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace UnitTest.Application.Pumps.Query.GetAllPumps
 {
