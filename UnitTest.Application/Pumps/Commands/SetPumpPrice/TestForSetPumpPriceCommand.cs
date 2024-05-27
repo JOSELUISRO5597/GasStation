@@ -6,7 +6,7 @@ using System;
 
 namespace UnitTest.Application.Pumps.Commands.SetPumpPrice
 {
-    public class TestForSetPumpPriceCommand
+     public abstract class TestForSetPumpPriceCommand
     {
         protected Mock<IPumpRepository> PumpRepositoryMock;
         protected Pump Pump;

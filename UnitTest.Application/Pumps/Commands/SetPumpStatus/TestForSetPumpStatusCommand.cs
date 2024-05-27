@@ -6,7 +6,7 @@ using System;
 
 namespace UnitTest.Application.Pumps.Commands.SetPumpStatus
 {
-    public class TestForSetPumpStatusCommand
+    public abstract class TestForSetPumpStatusCommand
     {
         protected Mock<IPumpRepository> PumpRepositoryMock;
         protected Pump Pump;
