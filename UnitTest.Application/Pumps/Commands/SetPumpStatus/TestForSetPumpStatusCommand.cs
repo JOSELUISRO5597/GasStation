@@ -4,27 +4,27 @@ using Domain.Interfaces;
 using Moq;
 using System;
 
-namespace UnitTest.Application.Pumps.Commands.SetPumpPrice
+namespace UnitTest.Application.Pumps.Commands.SetPumpStatus
 {
-    public class TestForSetPumpPriceCommand
+    public class TestForSetPumpStatusCommand
     {
         protected Mock<IPumpRepository> PumpRepositoryMock;
         protected Pump Pump;
-        protected SetPumpPriceCommandHandler CommandHandler;
+        protected SetPumpStatusCommandHandler CommandHandler;
 
-        public TestForSetPumpPriceCommand()
+        public TestForSetPumpStatusCommand()
         {
             PumpRepositoryMock = new Mock<IPumpRepository>();
-            Pump = GetMockedPump(Guid.NewGuid(), 50.0m);
+            Pump = GetMockedPump(Guid.NewGuid(), false);
 
             MoqRepositoryServices();
 
-            CommandHandler = new SetPumpPriceCommandHandler(PumpRepositoryMock.Object);
+            CommandHandler = new SetPumpStatusCommandHandler(PumpRepositoryMock.Object);
         }
 
-        protected virtual Pump GetMockedPump(Guid pumpId, decimal currentPrice)
+        protected virtual Pump GetMockedPump(Guid pumpId, bool status)
         {
-            return new Pump(pumpId, 0, false, currentPrice);
+            return new Pump(pumpId, 0, status, 0);
         }
 
         protected virtual void MoqRepositoryServices()
