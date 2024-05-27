@@ -20,9 +20,7 @@ namespace UnitTest.Application.Pumps.Query.GetAllPumps
 
         protected override List<Pump> GetAllMockedPumps()
         {
-            return new List<Pump>()
-            {
-            };
+            return new List<Pump>();
         }
     }
 }

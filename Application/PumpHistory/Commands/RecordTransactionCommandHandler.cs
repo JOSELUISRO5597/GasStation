@@ -19,20 +19,31 @@ namespace Application.PumpHistory.Commands
 
         public async Task<bool> Handle(RecordTransactionCommand command, CancellationToken cancellationToken)
         {
-            var pump = _pumpRepository.GetById(command.PumpId);
+            try
+            {
+                var pump = _pumpRepository.GetById(command.PumpId);
 
-            if (pump != null) {
-                var historyEntry = new Domain.Entities.PumpHistory
+                if (pump != null)
                 {
-                    PumpId = pump.Id,
-                    PumpNumber = pump.Number,
-                    Date = DateTime.Now,
-                    Amount = command.Amount
-                };
+                    var historyEntry = new Domain.Entities.PumpHistory
+                    {
+                        PumpId = pump.Id,
+                        PumpNumber = pump.Number,
+                        Date = DateTime.Now,
+                        Amount = command.Amount
+                    };
 
-                _pumpHistoryRepository.Add(historyEntry);
+                    _pumpHistoryRepository.Add(historyEntry);
+                    return true;
+                }
+
             }
-            return true;
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return false;
         }
     }
 }

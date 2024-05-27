@@ -7,9 +7,8 @@ using System.Collections.Generic;
 
 namespace UnitTest.Application.Pumps.Query.GetAllPumps
 {
-    public abstract class TestForGetAllPumpsQuery
+    public abstract class TestForGetAllPumpsQuery: BasePumpTest
     {
-        protected Mock<IPumpRepository> PumpRepositoryMock;
         protected List<Pump> Pumps;
         protected GetAllPumpsQuery Query;
         protected GetAllPumpsQueryHandler QueryHandler;
@@ -23,17 +22,6 @@ namespace UnitTest.Application.Pumps.Query.GetAllPumps
 
             Query = new GetAllPumpsQuery();
             QueryHandler = new GetAllPumpsQueryHandler(PumpRepositoryMock.Object);
-        }
-
-        protected virtual List<Pump> GetAllMockedPumps()
-        {
-            return new List<Pump>()
-            {
-                new Pump(Guid.NewGuid(),1, false, 0),
-                new Pump(Guid.NewGuid(),2, false, 0),
-                new Pump(Guid.NewGuid(),3, false, 0),
-                new Pump(Guid.NewGuid(),4, false, 0)
-            };
         }
 
         protected virtual void MoqRepositoryServices()
